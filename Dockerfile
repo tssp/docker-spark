@@ -29,7 +29,7 @@ RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-1.5.1-bin-hadoop2.6.tgz -O /
     rm -f /tmp/spark-bin.tgz
 
 # Ports for Web-UI and Spark-Master
-EXPOSE 8080 8081 7077
+EXPOSE 8080 8081 7077 6066
 
 # Default mode: Execute Spark Shell
 CMD ["spark-shell", "--master","local[2]"]
