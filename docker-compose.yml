@@ -1,21 +1,20 @@
-spark-master:
+master-node:
   image: tssp/apache-spark
-  command: spark-class org.apache.spark.deploy.master.Master
-  hostname: spark-master
+  hostname: master-node
+  command: spark-class org.apache.spark.deploy.master.Master --host master-node
   ports:
+    - 4040:4040
     - 6066:6066
     - 7077:7077
     - 8080:8080
 
-spark-worker:
+worker-node:
   image: tssp/apache-spark
-  command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
-  hostname: spark-worker
+  hostname: worker-node
+  command: spark-class org.apache.spark.deploy.worker.Worker spark://master-node:7077
   environment:
     SPARK_WORKER_CORES: 1
     SPARK_WORKER_MEMORY: 1g
     SPARK_WORKER_WEBUI_PORT: 8081
   links:
-    - spark-master
-  ports:
-    - 8081:8081
+    - master-node

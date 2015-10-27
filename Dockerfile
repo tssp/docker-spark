@@ -8,15 +8,17 @@
 #  * Cluster:    docker-compose up 
 #
 
-FROM ubuntu:15.10
+FROM phusion/baseimage:0.9.17
 
 MAINTAINER tssp <tim@coding-me.com>
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y wget openjdk-8-jre && \
+    apt-get upgrade -y && \
+    apt-get install -y wget curl openjdk-7-jre && \
     apt-get autoremove -y && \
     apt-get clean
+
 
 # Prepare environment
 ENV SPARK_HOME /opt/apache-spark 
