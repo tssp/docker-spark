@@ -27,11 +27,11 @@ ENV PATH       $SPARK_HOME/sbin:$SPARK_HOME/bin:$PATH
 # Download pre-compiled Apache Spark
 RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-1.5.1-bin-hadoop2.6.tgz -O /tmp/spark-bin.tgz && \
     tar -xzf /tmp/spark-bin.tgz -C /opt && \
-    ln -s /opt/spark-1.5.1-bin-hadoop2.6 $SPARK_HOME && \
+    mv /opt/spark-1.5.1-bin-hadoop2.6 $SPARK_HOME && \
     rm -f /tmp/spark-bin.tgz
 
 # Ports for Web-UI and Spark-Master
-EXPOSE 8080 8081 7077 6066
+EXPOSE 8080 8081 7077 6066 4040
 
 # Default mode: Execute Spark Shell
 CMD ["spark-shell", "--master","local[2]"]
