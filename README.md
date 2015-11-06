@@ -1,4 +1,4 @@
-Yet Another Docker Container for Apache Spark.
+Yet Another Docker Container for Apache Spark 1.5.1 (Hadoop 2.6).
 
 ## Usage
 
