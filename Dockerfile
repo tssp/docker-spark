@@ -8,14 +8,14 @@
 #  * Cluster:    docker-compose up 
 #
 
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.19
 
 MAINTAINER tssp <tim@coding-me.com>
 
 # Install necessary packages
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y wget curl openjdk-7-jre && \
+    apt-get install -y wget curl openjdk-8-jre && \
     apt-get autoremove -y && \
     apt-get clean
 
@@ -25,9 +25,9 @@ ENV SPARK_HOME /opt/apache-spark
 ENV PATH       $SPARK_HOME/sbin:$SPARK_HOME/bin:$PATH
 
 # Download pre-compiled Apache Spark
-RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-1.5.1-bin-hadoop2.6.tgz -O /tmp/spark-bin.tgz && \
+RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.2-bin-hadoop2.7.tgz -O /tmp/spark-bin.tgz && \
     tar -xzf /tmp/spark-bin.tgz -C /opt && \
-    mv /opt/spark-1.5.1-bin-hadoop2.6 $SPARK_HOME && \
+    mv /opt/spark-2.0.2-bin-hadoop2.7 $SPARK_HOME && \
     rm -f /tmp/spark-bin.tgz
 
 # Ports for Web-UI and Spark-Master
